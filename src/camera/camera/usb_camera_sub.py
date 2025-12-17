@@ -14,12 +14,15 @@ import numpy as np
 import cv2
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
 
 
 class UsbCameraSubscriber(Node):
     def __init__(self):
         super().__init__('usb_camera_subscriber')
 
+        self.bridge = CvBridge()
+        
         self.subscription = self.create_subscription(
             Image,
             'image_raw',          # topic from v4l2_camera
@@ -32,24 +35,27 @@ class UsbCameraSubscriber(Node):
             'USB camera subscriber node started, listening on /image_raw'
         )
 
+        self.camera_pub = self.create_publisher(Image, 'camera_image', 10)
+
+
+    
+            
     def image_callback(self, msg: Image):
         try:
-            # Convert raw bytes to numpy array and reshape
-            img = np.frombuffer(msg.data, dtype=np.uint8).reshape(
-                msg.height, msg.width, -1
-            )
-
-            # v4l2_camera usually publishes rgb8
-            if msg.encoding == 'rgb8':
-                frame_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-            else:
-                frame_bgr = img  # might already be BGR, etc.
+            # Convert ROS Image -> OpenCV (BGR)
+            frame_bgr = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
 
             cv2.imshow('USB Camera', frame_bgr)
-            cv2.waitKey(1)  # important: lets OpenCV process GUI events
+            cv2.waitKey(1)
+
+            # Republish OpenCV -> ROS Image
+            out_msg = self.bridge.cv2_to_imgmsg(frame_bgr, encoding='bgr8')
+            out_msg.header = msg.header
+            self.camera_pub.publish(out_msg)
 
         except Exception as exc:
             self.get_logger().error(f'Image conversion/display error: {exc}')
+
 
 
 def main(args=None):

@@ -146,3 +146,5 @@ target/
 # Exclude data from source control by default (uncomment if you want this)
 # /data/
 
+/Screenshots/
+

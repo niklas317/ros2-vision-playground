@@ -1,7 +1,10 @@
+from pathlib import Path
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
 def generate_launch_description():
+
     return LaunchDescription([
 
         Node(
@@ -11,6 +14,8 @@ def generate_launch_description():
             name = 'stream',
             parameters = [{
                 'video_device': '/dev/video4',
+                'camera_name': 'hbv_hd_camera',
+                "camera_info_url": "",
             }],
         ),
         
