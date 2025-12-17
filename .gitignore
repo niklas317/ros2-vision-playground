@@ -1,3 +1,34 @@
+############################
+# ROS / CMake / Workspace  #
+############################
+
+# Common ROS workspace outputs (catkin & colcon)
+build/
+devel/
+install/
+log/
+logs/
+
+# ROS tools & metadata
+.ros/
+.colcon/
+.catkin_tools/
+
+# CMake build files (if you ever run cmake directly)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# If you generate messages/services locally in the build tree
+msg_gen/
+srv_gen/
+
+############################
+# Python                   #
+############################
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,7 +39,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
+build-env/
 develop-eggs/
 dist/
 downloads/
@@ -47,6 +78,10 @@ coverage.xml
 *.mo
 *.pot
 
+############################
+# Framework / Docs         #
+############################
+
 # Django stuff:
 *.log
 
@@ -56,6 +91,10 @@ docs/_build/
 # PyBuilder
 target/
 
+############################
+# Environment / Config     #
+############################
+
 # DotEnv configuration
 .env
 
@@ -63,8 +102,12 @@ target/
 *.db
 *.rdb
 
-# Pycharm
-.idea
+############################
+# IDEs / Editors           #
+############################
+
+# PyCharm
+.idea/
 
 # VS Code
 .vscode/
@@ -76,15 +119,23 @@ target/
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# Mac OS-specific storage files
-.DS_Store
-
 # vim
 *.swp
 *.swo
 
+############################
+# OS / Misc                #
+############################
+
+# Mac OS-specific storage files
+.DS_Store
+
 # Mypy cache
 .mypy_cache/
+
+############################
+# Project-specific         #
+############################
 
 # Exclude virtual environment
 .venv/
@@ -92,5 +143,6 @@ target/
 # Exclude trained models
 /models/
 
-# exclude data from source control by default
+# Exclude data from source control by default (uncomment if you want this)
 # /data/
+
