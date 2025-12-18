@@ -29,6 +29,8 @@ setup(
         'console_scripts': [
             'usb_camera_sub = camera.usb_camera_sub:main',
             'calibrate = camera.generate_calibration:main',
+            'yolo = camera.yolov11:main',
+            'mp_pose = camera.mp_pose:main',
         ],
     },
 )
