@@ -31,6 +31,8 @@ setup(
             'calibrate = camera.generate_calibration:main',
             'yolo = camera.yolov11:main',
             'mp_pose = camera.mp_pose:main',
+            'mp_upperbody_pose = camera.mp_upperbody_pose:main',
+            'testprint = camera.testprint:main',
         ],
     },
 )
