@@ -28,6 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
             'usb_camera_sub = camera.usb_camera_sub:main',
+            'stop_gesture_detector = camera.stop_gesture_detector:main',
             'calibrate = camera.generate_calibration:main',
             'yolo = camera.yolov11:main',
             'mp_pose = camera.mp_pose:main',
